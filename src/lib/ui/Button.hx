@@ -15,13 +15,23 @@ class Button extends Entity
 	private var mouseWasDown:Bool = false;
 	private var mouseEntered:Bool = false;
 
+	private var xScale:Float = 1;
+	private var yScale:Float = 1;
+
 	public function new(x:Float, y:Float, skinInfo:Dynamic)
 	{
 		super(x, y);
 
 		dispatcher = new EventDispatcher();
 
-		initImage(skinInfo.defaultImage);
+
+		if(skinInfo.scaleX != null)
+			xScale = skinInfo.scaleX;
+
+		if(skinInfo.scaleY != null)
+			yScale = skinInfo.scaleY;
+
+		initImage(skinInfo.defaultImage, true);
 
 		skin = skinInfo;
 
@@ -102,32 +112,33 @@ class Button extends Entity
 			addListener(MouseEvent.CLICK, onMouseOut);
 	}
 
-	private function initImage(imageAsset:Dynamic, scaleX:Int = 1, scaleY:Int = 1)
+	private function initImage(imageAsset:Dynamic, updateHitbox:Bool = false)
 	{
 		var image:Image = new Image(imageAsset);
 
-		image.scaleX = scaleX;
-		image.scaleY = scaleY;
+		image.scaleX = xScale;
+		image.scaleY = yScale;
 
 		graphic = image;
 
-		setHitbox(image.width * scaleX, image.height * scaleY);
+		if(updateHitbox)
+			setHitbox(image.width * Std.int(xScale), image.height * Std.int(yScale));
 	}
 
 	// -----------------------------------------------------------------------------
 
 	private function onMouseOver(e:MouseEvent)
 	{
-		graphic = new Image(skin.overImage);
+		initImage(skin.overImage);
 	}
 
 	private function onMouseOut(e:MouseEvent)
 	{
-		graphic = new Image(skin.defaultImage);
+		initImage(skin.defaultImage);
 	}
 
 	private function onMouseDown(e:MouseEvent)
 	{
-		graphic = new Image(skin.downImage);
+		initImage(skin.downImage);
 	}
 }
