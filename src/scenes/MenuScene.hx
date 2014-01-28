@@ -12,10 +12,6 @@ import nme.events.MouseEvent;
 
 class MenuScene extends AbstractScene
 {
-	private var newGameB:Button;
-	private var optionsB:Button;
-	private var creditsB:Button;
-
 	private var highlight:HoverEffect;
 
 	private var MENU_OPTIONS:Array<Dynamic>;
@@ -23,41 +19,25 @@ class MenuScene extends AbstractScene
 	override public function begin()
 	{
 		MENU_OPTIONS = [{
-				instance: newGameB,
-				x: 141, y: 300,
-				skin: {
-					defaultImage: "menu/button_ply_unselect.png",
-					overImage: "menu/button_ply_select.png",
-					downImage: "menu/button_ply_unselect.png",
-					scaleX: 3, scaleY: 3
-				},
+
+				skin: MenuConsts.MENU_BUTTON_SKINS[0],
 				info: [
 					{event: MouseEvent.CLICK, handler: onNewGameClicked},
 					{event: MouseEvent.MOUSE_OVER, handler: onNewGameOver},
 					{event: MouseEvent.MOUSE_OUT, handler: onButtonOut}
 				]
+
 			}, {
-				instance: optionsB,
-				x: 141, y: 450,
-				skin: {
-					defaultImage: "menu/button_opt_unselect.png",
-					overImage: "menu/button_opt_select.png",
-					downImage: "menu/button_opt_unselect.png",
-					scaleX: 3, scaleY: 3
-				},
+
+				skin: MenuConsts.MENU_BUTTON_SKINS[1],
 				info: [
 					{event: MouseEvent.MOUSE_OVER, handler: onOptionsOver},
 					{event: MouseEvent.MOUSE_OUT, handler: onButtonOut}
 				]
+
 			}, {
-				instace: creditsB,
-				x: 141, y: 600,
-				skin: {
-					defaultImage: "menu/button_crd_unselect.png",
-					overImage: "menu/button_crd_select.png",
-					downImage: "menu/button_crd_unselect.png",
-					scaleX: 3, scaleY: 3
-				},
+
+				skin: MenuConsts.MENU_BUTTON_SKINS[2],
 				info: [
 					{event: MouseEvent.MOUSE_OVER, handler: onCreditsOver},
 					{event: MouseEvent.MOUSE_OUT, handler: onButtonOut}
@@ -100,8 +80,7 @@ class MenuScene extends AbstractScene
 		if(handlerInfo == null)
 			return;
 
-		for(eventHandlerPair in handlerInfo)
-			initButton(instanceInfo.instance, instanceInfo.x, instanceInfo.y, instanceInfo.skin, eventHandlerPair);
+		instanceInfo.instance = initButton(instanceInfo.skin, handlerInfo);
 
 		add(instanceInfo.instance);
 	}
@@ -117,12 +96,14 @@ class MenuScene extends AbstractScene
 			clearInstanceEventInfo(instanceInfo.instance, eventHandlerPair);
 	}
 
-	private function initButton(instanceEventInfo:Button, x:Float, y:Float, skin:Dynamic, handlerInfo:Dynamic)
+	private function initButton(skin:Dynamic, handlerInfo:Array<Dynamic>):Button
 	{
-		/*var button:Button*/
-		instanceEventInfo = new Button(x, y, skin);
+		var result:Button = new Button(skin.x, skin.y, skin);
 
-		instanceEventInfo.addListener(handlerInfo.event, handlerInfo.handler);
+		for(eventHandlerPair in handlerInfo)
+			result.addListener(eventHandlerPair.event, eventHandlerPair.handler);
+
+		return result;
 	}
 
 	private function clearInstanceEventInfo(intance:Button, handlerInfo:Dynamic)

@@ -37,17 +37,17 @@ class Main extends Engine
 		em.addEventListener(SceneEvent.NEW_GAME, onNewGame, false, 0, true);
 	}
 
+	public static function main()
+	{
+		new Main();
+	}
+
 	private function initScenes(hashScenePairs:Array<Dynamic>)
 	{
 		appScenes = new Hash<Scene>();
 
 		for(pair in hashScenePairs)
 			appScenes.set(pair.hash, pair.scene);
-	}
-
-	public static function main()
-	{
-		new Main();
 	}
 
 	private function onNewGame(e:SceneEvent)

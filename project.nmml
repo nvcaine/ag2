@@ -15,6 +15,7 @@
 
 	<assets path="assets/graphics" rename="gfx" include="*.png|*.jpg" type="image" />
 	<assets path="assets/graphics/menu" rename="menu" include="*.png|*.jpg" type="image" />
+	<assets path="assets/graphics/level" rename="level" include="*.png|*.jpg" type="image" />
 	<assets path="assets/audio" rename="sfx" include="*.mp3" if="flash" />
 	<assets path="assets/audio" rename="sfx" include="*.wav|*.ogg" unless="flash" />
 	<assets path="assets/font" rename="font" include="*.ttf" />
