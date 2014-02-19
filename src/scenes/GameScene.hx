@@ -1,6 +1,8 @@
 package scenes;
 
+import entities.PlayerController;
 import entities.level.Level;
+
 import lib.ui.Button;
 
 import model.events.SceneEvent;
@@ -10,6 +12,7 @@ import nme.events.MouseEvent;
 class GameScene extends AbstractScene
 {
 	private var backB:Button;
+	private var player:PlayerController;
 
 	override public function begin()
 	{
@@ -22,6 +25,12 @@ class GameScene extends AbstractScene
 		add(backB);
 
 		init();
+	}
+
+	override public function update()
+	{
+		super.update();
+		player.checkInput();
 	}
 
 	override public function end()
@@ -39,6 +48,8 @@ class GameScene extends AbstractScene
 		//data = LevelProxy.cloneInstance().waves[levelIndex].concat([]);
 
 		add(new Level([]));
+
+		player = new PlayerController(this);
 		//add(new HUDEntityWrapper(0, 668));
 
 		//player = new Player(HXP.width / 2, HXP.height - 150, this);
