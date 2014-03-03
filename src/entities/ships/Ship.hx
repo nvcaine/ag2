@@ -1,45 +1,38 @@
 package entities.ships;
 
-import com.haxepunk.Entity;
-import com.haxepunk.graphics.Image;
+import entities.DataEntity;
+import entities.projectiles.Projectile;
 
-class Ship extends Entity
+class Ship extends DataEntity
 {
-	private var data:Dynamic;
-
-	public function new(x:Float, y:Float, ?data:Dynamic)
-	{
-		super(x, y);
-
-		if(data != null)
-			this.data = data;
-	}
-
 	override public function added()
 	{
-		init(data);
+		init(this.data);
 	}
 
 	override public function update()
 	{
 	}
 
-	private function init(data:Dynamic)
+	public function fire()
 	{
-		graphic = getShipGraphic(data);
+		var projectile:Projectile = getProjectileInstance();
+
+		scene.add(projectile);
 	}
 
-	private function getShipGraphic(data:Dynamic)
+	private function init(data:Dynamic)
 	{
-		var result:Image = new Image(data.asset);
+		graphic = getGraphic(data);
+	}
 
-		if(data.flipped == null || data.flipped != true)
-			return result;
+	private function getProjectileInstance()
+	{
+		var projectileData:Dynamic = {speed:10, asset: "gfx/projectiles/glontz.png"};
 
-		result.originX = result.width;
-		result.originY = result.height;
-		result.angle = 180;
+		if(data.flipped)
+			projectileData.flipped = true;
 
-		return result;
+		return new Projectile(this.x, this.y, projectileData);
 	}
 }

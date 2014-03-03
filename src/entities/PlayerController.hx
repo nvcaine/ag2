@@ -3,9 +3,10 @@ package entities;
 import com.haxepunk.HXP;
 import com.haxepunk.Scene;
 import com.haxepunk.utils.Input;
-import com.haxepunk.utils.Key;
 
 import entities.ships.Player;
+
+import model.consts.PlayerConsts;
 
 class PlayerController
 {
@@ -14,11 +15,11 @@ class PlayerController
 
 	public function new(scene:Scene)
 	{
-		defineInput();
+		defineInput(PlayerConsts.INPUT);
 
 		this.scene = scene;
 
-		entity = new Player(100, 500, {asset: "gfx/ships/nava2.png"});
+		entity = new Player(100, 500, {asset: "gfx/ships/nava2.png", speed: 5});
 		this.scene.add(entity);
 	}
 
@@ -27,33 +28,33 @@ class PlayerController
 		handleAcceleration();
 	}
 
-	private function defineInput()
+	private function defineInput(nameKeyPairs:Array<Dynamic>)
 	{
-		Input.define("up", [Key.UP, Key.W]);
-		Input.define("down", [Key.DOWN, Key.S]);
-		Input.define("shoot", [Key.X]);
-		Input.define("left", [Key.LEFT, Key.A]);
-		Input.define("right", [Key.RIGHT, Key.D]);
-		Input.define("regen", [Key.Z]);
+		var pair:Dynamic;
+
+		for(pair in nameKeyPairs)
+			Input.define(pair.name, pair.keys);
 	}
 
 	private function handleAcceleration()
 	{
 		var xAcc:Int = 0, yAcc:Int = 0;
 
-		if(Input.check("up"))
+		if(Input.check(PlayerConsts.UP_INPUT))
 			yAcc = -1;			
 
-		if(Input.check("down"))
+		if(Input.check(PlayerConsts.DOWN_INPUT))
 			yAcc = 1;
 
-		if(Input.check("left"))
+		if(Input.check(PlayerConsts.LEFT_INPUT))
 			xAcc = -1;
 
-		if(Input.check("right"))
+		if(Input.check(PlayerConsts.RIGHT_INPUT))
 			xAcc = 1;
+
+		if(Input.check(PlayerConsts.FIRE_INPUT))
+			entity.fire();
 
 		entity.setAcceleration(xAcc, yAcc);
 	}
-
 }

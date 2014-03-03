@@ -1,9 +1,24 @@
 package entities.ships;
 
+import com.haxepunk.HXP;
+
 class Enemy extends Ship
 {
-	public function new(x:Float, y:Float, data:Dynamic)
+	private var fireDelay:Float = 3;
+
+	override public function added()
 	{
-		super(x, y, data);
+		super.added();
+	}
+
+	override public function update()
+	{
+		fireDelay -= HXP.elapsed;
+
+		if(fireDelay <= 0)
+		{
+			fire();
+			fireDelay = 3;
+		}
 	}
 }
