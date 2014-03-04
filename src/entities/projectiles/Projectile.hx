@@ -4,19 +4,16 @@ import entities.DataEntity;
 
 class Projectile extends DataEntity
 {
-	override public function added()
-	{
-		init(this.data);
-	}
-
 	override public function update()
 	{
+		super.update();
+
 		moveBy(0, -data.speed);
 	}
 
-	private function init(data:Dynamic)
+	override private function init(data:Dynamic)
 	{
-		graphic = getGraphic(data);
+		super.init(data);
 
 		if(data.flipped)
 			data.speed = -data.speed;

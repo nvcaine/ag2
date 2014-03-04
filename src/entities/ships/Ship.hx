@@ -5,25 +5,11 @@ import entities.projectiles.Projectile;
 
 class Ship extends DataEntity
 {
-	override public function added()
-	{
-		init(this.data);
-	}
-
-	override public function update()
-	{
-	}
-
 	public function fire()
 	{
 		var projectile:Projectile = getProjectileInstance();
 
 		scene.add(projectile);
-	}
-
-	private function init(data:Dynamic)
-	{
-		graphic = getGraphic(data);
 	}
 
 	private function getProjectileInstance()
