@@ -25,7 +25,7 @@ class ScrollingBackground extends Entity
 	{
 		super.added();
 
-		initImages(["level/bg.png", "level/bg.png"]);
+		initImages(["level/bg.png", "level/bg.png", "level/bg.png"]);
 	}
 
 	override public function update()

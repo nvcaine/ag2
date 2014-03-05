@@ -39,6 +39,19 @@ class Level extends Entity
 
 	private function initWaves()
 	{
-		scene.add(new Enemy(100, 100, {asset: "gfx/ships/nava2.png", flipped: true}));
+		var sequenceData:Dynamic = {
+			    cycle: false,
+			 duration: 3,
+			waypoints: [{x: 0, y: 0}, {x: 100, y: 100}, {x: -100, y: 100}, {x: 0, y: 0}],
+		};
+
+		var enemyData:Dynamic = {
+			   asset: "gfx/ships/nava2.png",
+			 flipped: true,
+			sequence: sequenceData,
+			   speed: 1
+		};
+
+		scene.add(new Enemy(100, 100, enemyData));
 	}
 }

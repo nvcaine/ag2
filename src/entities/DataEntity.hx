@@ -21,7 +21,7 @@ class DataEntity extends Entity
 
 	override public function added()
 	{
-		init(this.data);
+		init(data);
 	}
 
 	override public function update()

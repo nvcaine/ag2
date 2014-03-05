@@ -11,7 +11,7 @@ class HoverEffect extends Entity
 	{
 		g = new Spritemap("menu/lightning_spritemap.png", 200, 32);
 
-		g.add("lightning", [1, 2, 3, 4], 15);
+		g.add("lightning", [1, 2, 3, 4], 25);
 
 		g.scaleX = g.scaleY = 3;
 
