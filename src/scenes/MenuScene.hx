@@ -6,6 +6,7 @@ import entities.HoverEffect;
 import lib.ui.Button;
 
 import model.consts.MenuConsts;
+import model.consts.SceneConsts;
 import model.events.SceneEvent;
 
 import nme.events.MouseEvent;
@@ -40,7 +41,8 @@ class MenuScene extends AbstractScene
 				skin: MenuConsts.MENU_BUTTON_SKINS[2],
 				info: [
 					{event: MouseEvent.MOUSE_OVER, handler: onCreditsOver},
-					{event: MouseEvent.MOUSE_OUT, handler: onButtonOut}
+					{event: MouseEvent.MOUSE_OUT, handler: onButtonOut},
+					{event: MouseEvent.CLICK, handler: onCreditsClicked}
 				]
 		}];
 
@@ -129,7 +131,12 @@ class MenuScene extends AbstractScene
 
 	private function onNewGameClicked(e:MouseEvent)
 	{
-		eventManager.dispatchEvent(new SceneEvent(SceneEvent.NEW_GAME));
+		eventManager.dispatchEvent(new SceneEvent(SceneEvent.CHANGE_SCENE, {scene: SceneConsts.GAME}));
+	}
+
+	public function onCreditsClicked(e:MouseEvent)
+	{
+		eventManager.dispatchEvent(new SceneEvent(SceneEvent.CHANGE_SCENE, {scene: SceneConsts.CREDITS}));
 	}
 
 	private function onNewGameOver(e:MouseEvent)

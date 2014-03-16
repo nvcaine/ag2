@@ -19,7 +19,7 @@ class PlayerController
 
 		this.scene = scene;
 
-		entity = new Player(100, 500, {asset: "gfx/ships/nava2.png", speed: 5});
+		entity = new Player(100, 500, {asset: "gfx/ships/nava2.png", speed: 5, fireDelay: 0.5});
 		this.scene.add(entity);
 	}
 

@@ -11,6 +11,7 @@ import nme.events.Event;
 
 import scenes.MenuScene;
 import scenes.GameScene;
+import scenes.CreditsScene;
 
 
 class Main extends Engine
@@ -26,15 +27,15 @@ class Main extends Engine
 
 		initScenes([
 			{hash:SceneConsts.MENU, scene: new MenuScene()},
-			{hash:SceneConsts.GAME, scene: new GameScene()}
+			{hash:SceneConsts.GAME, scene: new GameScene()},
+			{hash:SceneConsts.CREDITS, scene: new CreditsScene()}
 		]);
 
 		HXP.scene = appScenes.get(SceneConsts.MENU);
 
 		em = EventManager.cloneInstance();
 
-		em.addEventListener(SceneEvent.MAIN_MENU, onShowMenu, false, 0, true);
-		em.addEventListener(SceneEvent.NEW_GAME, onNewGame, false, 0, true);
+		em.addEventListener(SceneEvent.CHANGE_SCENE, onChangeScene, false, 0, true);
 	}
 
 	public static function main()
@@ -50,13 +51,8 @@ class Main extends Engine
 			appScenes.set(pair.hash, pair.scene);
 	}
 
-	private function onNewGame(e:SceneEvent)
+	private function onChangeScene(e:SceneEvent)
 	{
-		HXP.scene = appScenes.get(SceneConsts.GAME);
-	}
-
-	private function onShowMenu(e:SceneEvent)
-	{
-		HXP.scene = appScenes.get(SceneConsts.MENU);
+		HXP.scene = appScenes.get(e.data.scene);
 	}
 }

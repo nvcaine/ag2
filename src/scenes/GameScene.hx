@@ -5,6 +5,7 @@ import entities.level.Level;
 
 import lib.ui.Button;
 
+import model.consts.SceneConsts;
 import model.events.SceneEvent;
 
 import nme.events.MouseEvent;
@@ -40,7 +41,7 @@ class GameScene extends AbstractScene
 
 	private function onBackClicked(e:MouseEvent)
 	{
-		eventManager.dispatchEvent(new SceneEvent(SceneEvent.MAIN_MENU));
+		eventManager.dispatchEvent(new SceneEvent(SceneEvent.CHANGE_SCENE, {scene: SceneConsts.MENU}));
 	}
 
 	private function init()
