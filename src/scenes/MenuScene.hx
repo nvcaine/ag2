@@ -61,6 +61,8 @@ class MenuScene extends AbstractScene
 
 	override public function end()
 	{
+		super.end();
+
 		clearButtonListeners(MENU_OPTIONS);
 	}
 

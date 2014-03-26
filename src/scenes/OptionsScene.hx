@@ -23,6 +23,8 @@ class OptionsScene extends AbstractScene
 
 	override public function end()
 	{
+		super.end();
+
 		backB.clearListener(MouseEvent.CLICK, onBackClicked);
 	}
 

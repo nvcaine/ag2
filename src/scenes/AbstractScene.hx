@@ -13,6 +13,11 @@ class AbstractScene extends Scene
 		eventManager = EventManager.cloneInstance();
 	}
 
+	override public function end()
+	{
+		removeAll();
+	}
+
 	private function addListeners(eventHandlerPairs:Array<Dynamic>)
 	{
 		for(pair in eventHandlerPairs)

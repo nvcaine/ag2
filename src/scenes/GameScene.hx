@@ -14,13 +14,13 @@ class GameScene extends AbstractScene
 {
 	private var backB:Button;
 	private var player:PlayerController;
+	private var mark:Bool = false;
 
 	override public function begin()
 	{
 		super.begin();
 
 		backB = new Button(10, 10, {defaultImage: "menu/back.png", overImage: "menu/back_over.png", downImage: "menu/back.png"});
-
 		backB.addListener(MouseEvent.CLICK, onBackClicked);
 
 		add(backB);
@@ -31,11 +31,14 @@ class GameScene extends AbstractScene
 	override public function update()
 	{
 		super.update();
+
 		player.checkInput();
 	}
 
 	override public function end()
 	{
+		super.end();
+
 		backB.clearListener(MouseEvent.CLICK, onBackClicked);
 	}
 
