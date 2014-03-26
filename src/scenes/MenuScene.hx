@@ -32,6 +32,7 @@ class MenuScene extends AbstractScene
 
 				skin: MenuConsts.MENU_BUTTON_SKINS[1],
 				info: [
+					{event: MouseEvent.CLICK, handler: onOptionsClicked},
 					{event: MouseEvent.MOUSE_OVER, handler: onOptionsOver},
 					{event: MouseEvent.MOUSE_OUT, handler: onButtonOut}
 				]
@@ -132,6 +133,11 @@ class MenuScene extends AbstractScene
 	private function onNewGameClicked(e:MouseEvent)
 	{
 		eventManager.dispatchEvent(new SceneEvent(SceneEvent.CHANGE_SCENE, {scene: SceneConsts.GAME}));
+	}
+
+	public function onOptionsClicked(e:MouseEvent)
+	{
+		eventManager.dispatchEvent(new SceneEvent(SceneEvent.CHANGE_SCENE, {scene: SceneConsts.OPTIONS}));
 	}
 
 	public function onCreditsClicked(e:MouseEvent)

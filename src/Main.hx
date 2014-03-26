@@ -11,6 +11,7 @@ import nme.events.Event;
 
 import scenes.MenuScene;
 import scenes.GameScene;
+import scenes.OptionsScene;
 import scenes.CreditsScene;
 
 
@@ -28,6 +29,7 @@ class Main extends Engine
 		initScenes([
 			{hash:SceneConsts.MENU, scene: new MenuScene()},
 			{hash:SceneConsts.GAME, scene: new GameScene()},
+			{hash:SceneConsts.OPTIONS, scene: new OptionsScene()},
 			{hash:SceneConsts.CREDITS, scene: new CreditsScene()}
 		]);
 
