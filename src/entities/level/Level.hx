@@ -49,7 +49,8 @@ class Level extends Entity
 			   asset: "gfx/ships/nava2.png",
 			 flipped: true,
 			sequence: sequenceData,
-			   speed: 1
+			   speed: 1,
+			 targets: ["player"]
 		};
 
 		scene.add(new Enemy(100, 100, enemyData));

@@ -43,6 +43,8 @@ class DataEntity extends Entity
 	private function init(data:Dynamic)
 	{
 		graphic = getGraphic(data);
+
+		setHitbox(imageAsset.width, imageAsset.height);
 	}
 
 	private function flipImage(target:Image):Image

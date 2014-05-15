@@ -6,7 +6,7 @@ import com.haxepunk.tweens.motion.LinearPath;
 
 class Enemy extends Ship
 {
-	private var fireDelay:Float = 3;
+	private var fireDelay:Float = 1;
 	private var sequenceEnded:Bool = false;
 	private var sequencePath:LinearPath;
 	private var sequenceStarted:Bool = false;
@@ -16,19 +16,19 @@ class Enemy extends Ship
 		super.added();
 
 		startSequence();
+
+		type = "enemy";
 	}
 
 	override public function update()
 	{
 		super.update();
 
-		fireDelay -= HXP.elapsed;
+		if(fireDelay > 0)
+			fireDelay -= HXP.elapsed;
 
 		if(fireDelay <= 0)
-		{
-			fire();
-			fireDelay = 3;
-		}
+			fireWithDelay(1);
 
 		move();
 	}
@@ -42,6 +42,13 @@ class Enemy extends Ship
 
 		sequenceStarted = true;
 		sequenceEnded = false;
+	}
+
+	public function fireWithDelay(delay:Int)
+	{
+		fire();
+
+		fireDelay = delay;
 	}
 
 	private function move()

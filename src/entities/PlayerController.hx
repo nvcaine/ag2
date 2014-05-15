@@ -25,7 +25,7 @@ class PlayerController
 
 	public function checkInput()
 	{
-		handleAcceleration();
+		handleInput();
 	}
 
 	private function defineInput(nameKeyPairs:Array<Dynamic>)
@@ -36,7 +36,7 @@ class PlayerController
 			Input.define(pair.name, pair.keys);
 	}
 
-	private function handleAcceleration()
+	private function handleInput()
 	{
 		var xAcc:Int = 0, yAcc:Int = 0;
 
