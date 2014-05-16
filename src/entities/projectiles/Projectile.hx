@@ -29,7 +29,7 @@ class Projectile extends DataEntity
 
 	private function checkCollision(entityTypes:Array<String>, handler:Entity->Void)
 	{
-		var entity:Entity = collideTypes(entityType, this.x, this.y);
+		var entity:Entity = collideTypes(entityTypes, this.x, this.y);
 
 		if(entity == null)
 			return;

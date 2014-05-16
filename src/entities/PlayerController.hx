@@ -19,7 +19,14 @@ class PlayerController
 
 		this.scene = scene;
 
-		entity = new Player(100, 500, {asset: "gfx/ships/nava2.png", speed: 5, fireDelay: 0.5});
+		var playerData:Dynamic = {
+			    asset: "gfx/ships/nava2.png",
+			    speed: 5,
+			fireDelay: 0.5,
+			  targets: ["enemy"]
+		};
+
+		entity = new Player(100, 500, playerData);
 		this.scene.add(entity);
 	}
 

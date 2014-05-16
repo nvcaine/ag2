@@ -20,6 +20,7 @@ class Level extends Entity
 	{
 		init();
 		initWaves();
+		initGroundElements();
 	}
 
 	override public function update()
@@ -54,5 +55,9 @@ class Level extends Entity
 		};
 
 		scene.add(new Enemy(100, 100, enemyData));
+	}
+
+	function initGroundElements()
+	{
 	}
 }

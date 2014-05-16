@@ -3,6 +3,9 @@ package entities;
 import com.haxepunk.Entity;
 import com.haxepunk.HXP;
 import com.haxepunk.graphics.Image;
+import com.haxepunk.masks.Pixelmask;
+
+import nme.Assets;
 
 class DataEntity extends Entity
 {
@@ -44,7 +47,10 @@ class DataEntity extends Entity
 	{
 		graphic = getGraphic(data);
 
-		setHitbox(imageAsset.width, imageAsset.height);
+		//setHitbox(imageAsset.width, imageAsset.height);
+
+		//trace(data.asset);
+		mask = new Pixelmask(Assets.getBitmapData(data.asset, false));
 	}
 
 	private function flipImage(target:Image):Image

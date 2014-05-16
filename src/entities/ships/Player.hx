@@ -20,7 +20,7 @@ class Player extends Ship
 	{
 		super(x, y, data);
 
-		//this.type = EntityTypeConsts.PLAYER;
+		this.type = "player";//EntityTypeConsts.PLAYER;
 	}
 
 	override public function added()
