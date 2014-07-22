@@ -57,7 +57,12 @@ class Level extends Entity
 		scene.add(new Enemy(100, 100, enemyData));
 	}
 
-	function initGroundElements()
+	private function initGroundElements()
 	{
+		var elementData:Dynamic = {
+			asset: "gfx/level/nava.png"
+		}
+
+		scene.add(new GroundElement(100, 100, elementData));
 	}
 }

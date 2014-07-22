@@ -51,7 +51,7 @@ class Player extends Ship
 		xVelocity = getAcceleratedVelocity(xVelocity, xAcceleration, 0, HXP.width - width, x, data.speed, PlayerConsts.DRAG);
 		yVelocity = getAcceleratedVelocity(yVelocity, yAcceleration, 0, HXP.height - height, y, data.speed, PlayerConsts.DRAG);
 
-		moveBy(xVelocity, yVelocity/*, EntityTypeConsts.LEVEL*/);
+		moveBy(xVelocity, yVelocity, "ground-entity");
 
 		/*if(yVelocity == 0 && collideTypes([EntityTypeConsts.LEVEL], x, y) != null)
 			yVelocity = data.speed;*/

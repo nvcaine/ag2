@@ -1,5 +1,6 @@
 package entities.ships;
 
+import com.haxepunk.Entity;
 import com.haxepunk.HXP;
 import com.haxepunk.tweens.TweenEvent;
 import com.haxepunk.tweens.motion.LinearPath;
@@ -53,6 +54,8 @@ class Enemy extends Ship
 
 	private function move()
 	{
+		checkPlayerCollision();
+
 		if(!sequenceEnded && sequenceStarted)
 		{
 			updateSequencePosition();
@@ -101,5 +104,15 @@ class Enemy extends Ship
 
 		sequenceEnded = true;
 		sequenceStarted = false;
+	}
+
+	private function checkPlayerCollision()
+	{
+		var player:Entity = collide("player", this.x, this.y);
+
+		if(player == null)
+			return;
+
+		scene.remove(this);
 	}
 }

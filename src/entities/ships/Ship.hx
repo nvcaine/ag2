@@ -44,7 +44,6 @@ class Ship extends DataEntity
 			return;
 
 		fireDelayCounter = data.fireDelay;
-
 	}
 
 	private function getProjectileInstance()

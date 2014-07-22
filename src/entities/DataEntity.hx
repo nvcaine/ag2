@@ -33,6 +33,11 @@ class DataEntity extends Entity
 			destroy();
 	}
 
+	override public function removed()
+	{
+		graphic.destroy();
+	}
+
 	private function getGraphic(data:Dynamic)
 	{
 		var result:Image = new Image(data.asset);
