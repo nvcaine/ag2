@@ -46,6 +46,14 @@ class Ship extends DataEntity
 		fireDelayCounter = data.fireDelay;
 	}
 
+	public function bounce(xSpeed:Float, ySpeed:Float) {
+
+		trace("bounce");
+
+		this.x += xSpeed;
+		this.y += ySpeed;
+	}
+
 	private function getProjectileInstance()
 	{
 		var proxy:ProjectileProxy = ProjectileProxy.cloneInstance();

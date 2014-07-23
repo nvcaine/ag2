@@ -59,10 +59,7 @@ class Level extends Entity
 
 	private function initGroundElements()
 	{
-		var elementData:Dynamic = {
-			asset: "gfx/level/nava.png"
-		}
-
-		scene.add(new GroundElement(100, 100, elementData));
+		// /scene.add(new GroundElement(100, 100, {asset: "gfx/level/nava.png", speed: 1.5}));
+		scene.add(new GroundElement(300, 500, {asset: "gfx/level/nava.png", speed: -1.5}));
 	}
 }

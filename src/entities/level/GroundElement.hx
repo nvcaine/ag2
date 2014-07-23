@@ -3,6 +3,7 @@ package entities.level;
 import com.haxepunk.Entity;
 
 import entities.DataEntity;
+import entities.ships.Ship;
 
 class GroundElement extends DataEntity
 {
@@ -13,27 +14,34 @@ class GroundElement extends DataEntity
 		this.type = "ground-entity";
 	}
 
+	override public function moveCollideX(e:Entity):Bool
+	{
+		bounceTarget(data.speed, 0);
+
+		return true;
+	}
+
+	override public function moveCollideY(e:Entity):Bool
+	{
+		bounceTarget(0, data.speed);
+
+		return true;
+	}
+
 	override public function update()
 	{
 		super.update();
 
-		checkPlayerCollision(onPlayerCollision);
-
-		moveBy(0, 1.5);
+		moveBy(0, data.speed, "player");
 	}
 
-	private function checkPlayerCollision(handler:Entity->Void)
+	private function bounceTarget(e:Entity, xSpeed:Float, ySpeed:Float)
 	{
-		var entity:Entity = collideTypes("player", this.x, this.y);
-
-		if(entity == null)
+		if(!Std.is(e, Ship)) // might need a more suitable "projectile target" class
 			return;
 
-		handler(entity);
-	}
+		var ship:Ship = cast(e, Ship);
 
-	private function onPlayerCollision(e:Entity)
-	{
-		trace("collided with player");
+		ship.bounce(xSpeed, ySpeed);
 	}
 }
